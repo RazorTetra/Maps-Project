@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Navbar.css';
-import { FaDoorOpen } from 'react-icons/fa';
-import { FaBars } from 'react-icons/fa';
+import { FaDoorOpen, FaBars } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,24 +16,24 @@ const Navbar = () => {
         <div className="logo-container">
           <img src="src/assets/logo.png" alt="Logo" className="logo" />
         </div>
-        <div className="menu-container">
-          <button className="menu-button hover:text-orange-500">Home</button>
-          <button className="menu-button flex items-center hover:text-orange-500">
+        <div className="menu-container sm:flex hidden">
+          <Link to="/" className="menu-button hover:text-orange-500">Home</Link>
+          <Link to="/login" className="menu-button flex items-center hover:text-orange-500">
             <FaDoorOpen className="mr-2" /> Login
-          </button>
+          </Link>
         </div>
-        <div className="hamburger" onClick={toggleMenu}>
+        <div className="hamburger sm:hidden flex" onClick={toggleMenu}>
           <FaBars />
         </div>
+        {menuOpen && (
+          <div className="menu-mobile sm:hidden">
+            <Link to="/" className="menu-button hover:text-orange-500" onClick={toggleMenu}>Home</Link>
+            <Link to="/login" className="menu-button flex items-center hover:text-orange-500" onClick={toggleMenu}>
+              <FaDoorOpen className="mr-2" /> Login
+            </Link>
+          </div>
+        )}
       </div>
-      {menuOpen && (
-        <div className="menu-mobile">
-          <button className="menu-button hover:text-orange-500">Home</button>
-          <button className="menu-button flex items-center hover:text-orange-500">
-            <FaDoorOpen className="mr-2" /> Login
-          </button>
-        </div>
-      )}
     </nav>
   );
 };

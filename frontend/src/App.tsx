@@ -1,17 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import MainMenu from './pages/MainMenu';
+import Login from './pages/Login';
+import SignUp from './pages/Signup';
 
-import MainMenu from './pages/MainMenu';  // Pastikan ini sudah diimpor
-
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<MainMenu />} />  // Set MainMenu sebagai halaman root
+        <Route path="/" element={<MainMenu />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
